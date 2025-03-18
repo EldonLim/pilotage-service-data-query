@@ -81,7 +81,7 @@ const formatDateTime = (dateTime: string | null) => {
                     ))
                 ) : (
                 <tr>
-                    <td colSpan={9} style={{ textAlign: "center" }}>No data available</td>
+                    <td colSpan={10} style={{ textAlign: "center" }}>No data available</td>
                 </tr>
                 )}
             </tbody>
