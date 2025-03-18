@@ -51,6 +51,7 @@ const formatDateTime = (dateTime: string | null) => {
             <table border={1}>
             <thead>
                 <tr>
+                <th>Snapshot</th>
                 <th>Vessel Name</th>
                 <th>IMO Number</th>
                 <th>Request Time</th>
@@ -66,6 +67,7 @@ const formatDateTime = (dateTime: string | null) => {
                 {data ? (
                     data.map((entry, index) => (
                         <tr key={index}>
+                        <td>{formatDateTime(entry.pilotage_snapshot_dt)}</td>
                         <td>{entry.pilotage_nm || "Unknown"}</td>
                         <td>{entry.pilotage_imo || "Unknown"}</td>
                         <td>{formatDateTime(entry.pilotage_cst_dt_time)}</td>
