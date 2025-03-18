@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import SearchBar from './SearchBar';
+import PilotageTable from './PilotageTable';
+import fetchPilotageData from './api';
 
-function App() {
+const App: React.FC = () => {
+  const [data, setData] = useState(null);
+
+  const handleSearch = async (imo: string) => {
+    const result = await fetchPilotageData(imo);
+    if (result) setData(result);
+    else {
+      alert("No data found for this IMO.");
+      setData(null); // Keep table empty if no data is found
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>Pilotage Service Data Query</h1>
+      <div className='search-bar'>
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <center>
+        <PilotageTable data={data} />
+      </center>
     </div>
   );
-}
+};
 
 export default App;
